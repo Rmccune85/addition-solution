@@ -4,7 +4,109 @@
 
 body {
     font-family: Arial, sans-serif;
+    text-align: center;/* ───── ByteShifter ───── */
+/* Crafted with 💻 & ☕ */
+/* github.com/YourGitHubUsername */
+
+body {
+    font-family: Arial, sans-serif;
     text-align: center;
+    background-color: #f4f4f4;
+    overflow: hidden;
+}
+
+h1, h2 {
+    margin: 5px;
+    font-weight: bold;
+}
+
+.container {
+    margin: 50px auto;
+    padding: 20px;
+    width: 300px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#question-container {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px 0;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    width: 80px;
+}
+
+p {
+    margin: 5px 0;
+}
+
+hr {
+    border: none;
+    border-top: 2px solid black;
+    width: 50%;
+    margin: 10px auto;
+}
+
+input {
+    width: 80%;
+    padding: 5px;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 10px;
+    border: 2px solid #333;
+    border-radius: 5px;
+}
+
+.buttons {
+    margin-top: 15px;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+    transition: transform 0.2s ease-in-out, background-color 0.3s;
+}
+
+button:hover {
+    background-color: darkblue;
+    transform: scale(1.1);
+}
+
+/* 🎉 MASSIVE Confetti Effect */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.confetti {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    animation: fall 1.5s linear infinite;
+    transform: rotate(45deg);
+}
+
+@keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+}
+
     background-color: #f4f4f4;
     overflow: hidden;
     transition: background-color 0.5s ease-in-out;
