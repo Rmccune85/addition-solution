@@ -6,43 +6,34 @@ document.addEventListener("DOMContentLoaded", function () {
         num2 = Math.floor(Math.random() * 10) + 1;
         correctAnswer = num1 + num2;
 
-        // Ensure elements exist before modifying them
-        let questionElement = document.getElementById("question");
-        let feedbackElement = document.getElementById("feedback");
-        let answerElement = document.getElementById("answer");
-
-        if (questionElement) questionElement.innerText = `What is ${num1} + ${num2}?`;
-        if (feedbackElement) feedbackElement.innerText = "";
-        if (answerElement) answerElement.value = "";
+        document.getElementById("question").innerText = `What is ${num1} + ${num2}?`;
+        document.getElementById("feedback").innerText = "";
+        document.getElementById("answer").value = "";
     }
 
     function checkAnswer() {
-        let answerElement = document.getElementById("answer");
-        let feedbackElement = document.getElementById("feedback");
+        let userAnswer = document.getElementById("answer").value.trim();
+        let feedback = document.getElementById("feedback");
 
-        if (!answerElement || !feedbackElement) return; // Prevent errors if elements are missing
-
-        let userAnswer = answerElement.value.trim();
         if (userAnswer === "") {
-            feedbackElement.innerText = "Please enter a number!";
+            feedback.innerText = "Please enter a number!";
             return;
         }
 
         if (parseInt(userAnswer) === correctAnswer) {
-            feedbackElement.innerText = "Correct!";
+            feedback.innerText = "Correct!";
         } else {
-            feedbackElement.innerText = "Try again!";
+            feedback.innerText = "Try again!";
         }
     }
 
-    // Attach functions to global scope
-    window.newQuestion = newQuestion;
-    window.checkAnswer = checkAnswer;
+    // Attach event listeners
+    document.getElementById("submit").addEventListener("click", checkAnswer);
+    document.getElementById("newQuestion").addEventListener("click", newQuestion);
 
-    // Load the first question
+    // Load first question
     newQuestion();
 });
-
 // ───── ByteShifter ─────
 // Crafted with 💻 & ☕
 // github.com/YourGitHubUsername
