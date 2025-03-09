@@ -3,31 +3,33 @@
 // github.com/YourGitHubUsername
 
 document.addEventListener("DOMContentLoaded", function () {
-    let num1, num2, correctAnswer, operator;
+    let num1, num2, correctAnswer, operator, level = 1, score = 0, streak = 0;
+    const scoreDisplay = document.getElementById("score");
+    const streakDisplay = document.getElementById("streak");
+    const levelDisplay = document.getElementById("level");
 
     function newQuestion() {
-        num1 = Math.floor(Math.random() * 10) + 1;
-        num2 = Math.floor(Math.random() * 10) + 1;
-        
-        // Randomly choose an operator
-        const operators = ["+", "-", "×", "÷"];
+        let min = 1, max = 10;
+
+        if (level === 2) max = 20; // Medium difficulty
+        if (level === 3) max = 50; // Hard difficulty
+
+        num1 = Math.floor(Math.random() * max) + min;
+        num2 = Math.floor(Math.random() * max) + min;
+
+        let operators = level === 1 ? ["+", "-"] : level === 2 ? ["+", "-", "×"] : ["÷"];
         operator = operators[Math.floor(Math.random() * operators.length)];
 
-        // Calculate the correct answer
-        switch (operator) {
-            case "+":
-                correctAnswer = num1 + num2;
-                break;
-            case "-":
-                correctAnswer = num1 - num2;
-                break;
-            case "×":
-                correctAnswer = num1 * num2;
-                break;
-            case "÷":
-                num1 = num1 * num2; // Ensure num1 is a multiple of num2 for clean division
-                correctAnswer = num1 / num2;
-                break;
+        // Ensure division results in whole numbers
+        if (operator === "÷") {
+            num1 = num1 * num2;
+            correctAnswer = num1 / num2;
+        } else if (operator === "+") {
+            correctAnswer = num1 + num2;
+        } else if (operator === "-") {
+            correctAnswer = num1 - num2;
+        } else if (operator === "×") {
+            correctAnswer = num1 * num2;
         }
 
         document.getElementById("num1").innerText = num1;
@@ -35,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("num2").innerText = num2;
         document.getElementById("feedback").innerText = "";
         document.getElementById("answer").value = "";
-        document.getElementById("answer").focus(); // Auto-focus on the input box
+        document.getElementById("answer").focus();
     }
 
     function checkAnswer() {
@@ -48,54 +50,95 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (parseFloat(userAnswer) === correctAnswer) {
-            feedback.innerText = "Correct!";
-            startFireworks(); // 🎆 Fireworks effect
+            score += 10;
+            streak++;
+            feedback.innerText = getEncouragement();
+            backgroundFlash("green");
+            startConfetti();
+
+            if (streak % 5 === 0) startFireworks();
+
             setTimeout(() => {
+                stopConfetti();
                 stopFireworks();
+                levelUp();
                 newQuestion();
-            }, 3000); // Auto-load next question after 3 seconds
+            }, 2000);
         } else {
             feedback.innerText = "Try again!";
+            streak = 0;
+            backgroundFlash("red");
         }
+
+        scoreDisplay.innerText = `Score: ${score}`;
+        streakDisplay.innerText = `Streak: ${streak}`;
+        levelDisplay.innerText = `Level: ${level}`;
     }
 
-    // Attach event listeners
-    document.getElementById("submit").addEventListener("click", checkAnswer);
-    document.getElementById("newQuestion").addEventListener("click", newQuestion);
+    function getEncouragement() {
+        const messages = ["Great job! 🎯", "Awesome! 🔥", "Keep going! 🚀", "You're a math genius! 🏆", "Perfect! 💯"];
+        return messages[Math.floor(Math.random() * messages.length)];
+    }
 
-    // Enable Enter key to trigger submit
-    document.getElementById("answer").addEventListener("keypress", function (event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            checkAnswer();
-        }
-    });
+    function levelUp() {
+        if (score >= 50 && level === 1) level = 2;
+        if (score >= 100 && level === 2) level = 3;
+    }
 
-    // Fireworks effect using JavaScript
+    function backgroundFlash(color) {
+        document.body.style.backgroundColor = color;
+        setTimeout(() => document.body.style.backgroundColor = "#f4f4f4", 500);
+    }
+
     function startFireworks() {
-        const fireworksContainer = document.createElement("div");
-        fireworksContainer.classList.add("fireworks-container");
-        document.body.appendChild(fireworksContainer);
+        const fireworks = document.createElement("div");
+        fireworks.classList.add("fireworks-container");
+        document.body.appendChild(fireworks);
 
         for (let i = 0; i < 10; i++) {
             let firework = document.createElement("div");
             firework.classList.add("firework");
-            fireworksContainer.appendChild(firework);
-
+            fireworks.appendChild(firework);
             firework.style.left = `${Math.random() * 100}vw`;
             firework.style.top = `${Math.random() * 100}vh`;
-            firework.style.animationDelay = `${Math.random() * 1.5}s`;
         }
 
-        setTimeout(() => {
-            stopFireworks();
-        }, 2000); // Remove fireworks after 2 seconds
+        setTimeout(() => stopFireworks(), 2000);
     }
 
     function stopFireworks() {
         let fireworks = document.querySelector(".fireworks-container");
         if (fireworks) fireworks.remove();
     }
+
+    function startConfetti() {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti-container");
+        document.body.appendChild(confetti);
+
+        for (let i = 0; i < 50; i++) {
+            let piece = document.createElement("div");
+            piece.classList.add("confetti");
+            confetti.appendChild(piece);
+            piece.style.left = `${Math.random() * 100}vw`;
+            piece.style.animationDelay = `${Math.random()}s`;
+        }
+    }
+
+    function stopConfetti() {
+        let confetti = document.querySelector(".confetti-container");
+        if (confetti) confetti.remove();
+    }
+
+    document.getElementById("submit").addEventListener("click", checkAnswer);
+    document.getElementById("newQuestion").addEventListener("click", newQuestion);
+
+    document.getElementById("answer").addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            checkAnswer();
+        }
+    });
 
     newQuestion();
 });
