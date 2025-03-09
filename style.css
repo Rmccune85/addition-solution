@@ -3,10 +3,16 @@
 /* github.com/YourGitHubUsername */
 
 body {
-    font-family: Arial, sans-serif;   
+    font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f4f4f4;
     overflow: hidden;
+    transition: background-color 0.5s ease-in-out;
+}
+
+h1, h2 {
+    margin: 5px;
+    font-weight: bold;
 }
 
 .container {
@@ -16,11 +22,6 @@ body {
     background: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
 }
 
 #question-container {
@@ -52,6 +53,8 @@ input {
     text-align: center;
     font-size: 18px;
     margin-top: 10px;
+    border: 2px solid #333;
+    border-radius: 5px;
 }
 
 .buttons {
@@ -67,10 +70,12 @@ button {
     border-radius: 5px;
     background-color: blue;
     color: white;
+    transition: transform 0.2s ease-in-out, background-color 0.3s;
 }
 
 button:hover {
     background-color: darkblue;
+    transform: scale(1.1);
 }
 
 /* 🎆 Fireworks Effect */
@@ -94,12 +99,43 @@ button:hover {
 }
 
 @keyframes explode {
-    0% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(5);
-    }
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(5); }
+}
+
+/* 🎉 Confetti Effect */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.confetti {
+    width: 10px;
+    height: 10px;
+    background: hsl(calc(360 * var(--hue)), 100%, 50%);
+    position: absolute;
+    animation: fall 1.5s linear infinite;
+    transform: rotate(45deg);
+}
+
+@keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* 🟢 Correct Answer Effect */
+.correct {
+    background-color: green !important;
+    transition: background-color 0.5s ease-in-out;
+}
+
+/* 🔴 Wrong Answer Effect */
+.wrong {
+    background-color: red !important;
+    transition: background-color 0.5s ease-in-out;
 }
