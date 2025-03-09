@@ -9,10 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const levelDisplay = document.getElementById("level");
 
     function newQuestion() {
-        let min = 1, max = 10;
+        let min = 1, max = 5;
 
-        if (level === 2) max = 20; // Medium difficulty
-        if (level === 3) max = 50; // Hard difficulty
+        if (level === 2) max = 10; // Medium difficulty
+        if (level === 3) max = 25; // Hard difficulty
 
         num1 = Math.floor(Math.random() * max) + min;
         num2 = Math.floor(Math.random() * max) + min;
@@ -76,8 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function levelUp() {
-        if (score >= 50 && level === 1) level = 2;
-        if (score >= 100 && level === 2) level = 3;
+        if (score >= 25 && level === 1) level = 2;
+        if (score >= 50 && level === 2) level = 3;
     }
 
     function startConfetti() {
