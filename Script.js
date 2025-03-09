@@ -1,3 +1,7 @@
+// ───── ByteShifter ─────
+// Crafted with 💻 & ☕
+// github.com/YourGitHubUsername
+
 let num1, num2, correctAnswer;
 
 // Function to generate a new question
