@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("num2").innerText = num2;
         document.getElementById("feedback").innerText = "";
         document.getElementById("answer").value = "";
+        document.getElementById("answer").focus(); // Auto-focus on the input box
     }
 
     function checkAnswer() {
@@ -48,6 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (parseFloat(userAnswer) === correctAnswer) {
             feedback.innerText = "Correct!";
+            startFireworks(); // 🎆 Fireworks effect
+            setTimeout(newQuestion, 3000); // Auto-load next question after 3 seconds
         } else {
             feedback.innerText = "Try again!";
         }
@@ -64,6 +67,16 @@ document.addEventListener("DOMContentLoaded", function () {
             checkAnswer();
         }
     });
+
+    // Fireworks animation
+    function startFireworks() {
+        const fireworks = document.createElement("div");
+        fireworks.classList.add("fireworks");
+        document.body.appendChild(fireworks);
+        setTimeout(() => {
+            fireworks.remove();
+        }, 2000);
+    }
 
     newQuestion();
 });
