@@ -1,3 +1,7 @@
+// ───── ByteShifter ─────
+// Crafted with 💻 & ☕
+// github.com/YourGitHubUsername
+
 document.addEventListener("DOMContentLoaded", function () {
     let num1, num2, correctAnswer;
 
@@ -6,7 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
         num2 = Math.floor(Math.random() * 10) + 1;
         correctAnswer = num1 + num2;
 
-        document.getElementById("question").innerText = `What is ${num1} + ${num2}?`;
+        document.getElementById("num1").innerText = num1;
+        document.getElementById("num2").innerText = num2;
         document.getElementById("feedback").innerText = "";
         document.getElementById("answer").value = "";
     }
@@ -27,13 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Attach event listeners
     document.getElementById("submit").addEventListener("click", checkAnswer);
     document.getElementById("newQuestion").addEventListener("click", newQuestion);
 
-    // Load first question
     newQuestion();
 });
-// ───── ByteShifter ─────
-// Crafted with 💻 & ☕
-// github.com/YourGitHubUsername
