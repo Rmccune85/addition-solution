@@ -1,3 +1,7 @@
+/* ───── ByteShifter ───── */
+/* Crafted with 💻 & ☕ */
+/* github.com/YourGitHubUsername */
+
 body {
     font-family: Arial, sans-serif;   
     text-align: center;
@@ -13,13 +17,57 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-button {
-    margin-top: 10px;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
-/* 📌 Signature  
-// ───── ByteShifter ─────  
-// Crafted with 💻 & ☕  */
+#question-container {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px 0;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    width: 80px;
+}
+
+p {
+    margin: 5px 0;
+}
+
+hr {
+    border: none;
+    border-top: 2px solid black;
+    width: 50%;
+    margin: 10px auto;
+}
+
+input {
+    width: 80%;
+    padding: 5px;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.buttons {
+    margin-top: 15px;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+}
+
+button:hover {
+    background-color: darkblue;
+}
