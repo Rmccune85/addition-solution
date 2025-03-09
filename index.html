@@ -9,15 +9,23 @@
 <body>
     <div class="container">
         <h1>Addition Game</h1>
-        <p id="question">Loading...</p>
-        <input type="number" id="answer" placeholder="Your answer">
-        <button id="submit">Submit</button>
+        <div id="question-container">
+            <p id="num1"></p>
+            <p>+</p>
+            <p id="num2"></p>
+            <hr>
+            <input type="number" id="answer" placeholder="Enter answer">
+        </div>
+        <div class="buttons">
+            <button id="submit">Submit</button>
+            <button id="newQuestion">New Question</button>
+        </div>
         <p id="feedback"></p>
-        <button id="newQuestion">New Question</button>
     </div>
     <script src="script.js"></script>
 </body>
 </html>
+
 
 <!-- 📌 Signature  
 // ───── ByteShifter ─────  
