@@ -53,21 +53,16 @@ document.addEventListener("DOMContentLoaded", function () {
             score += 10;
             streak++;
             feedback.innerText = getEncouragement();
-            backgroundFlash("green");
-            startConfetti();
-
-            if (streak % 1 === 0) startFireworks();
+            startConfetti(); // 🎉 Massive Confetti Explosion!
 
             setTimeout(() => {
                 stopConfetti();
-                stopFireworks();
                 levelUp();
                 newQuestion();
             }, 2000);
         } else {
             feedback.innerText = "Try again!";
             streak = 0;
-            backgroundFlash("red");
         }
 
         scoreDisplay.innerText = `Score: ${score}`;
@@ -81,47 +76,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function levelUp() {
-        if (score >= 10 && level === 1) level = 2;
-        if (score >= 20 && level === 2) level = 3;
-    }
-
-    function backgroundFlash(color) {
-        document.body.style.backgroundColor = color;
-        setTimeout(() => document.body.style.backgroundColor = "#f4f4f4", 500);
-    }
-
-    function startFireworks() {
-        const fireworks = document.createElement("div");
-        fireworks.classList.add("fireworks-container");
-        document.body.appendChild(fireworks);
-
-        for (let i = 0; i < 10; i++) {
-            let firework = document.createElement("div");
-            firework.classList.add("firework");
-            fireworks.appendChild(firework);
-            firework.style.left = `${Math.random() * 100}vw`;
-            firework.style.top = `${Math.random() * 100}vh`;
-        }
-
-        setTimeout(() => stopFireworks(), 2000);
-    }
-
-    function stopFireworks() {
-        let fireworks = document.querySelector(".fireworks-container");
-        if (fireworks) fireworks.remove();
+        if (score >= 50 && level === 1) level = 2;
+        if (score >= 100 && level === 2) level = 3;
     }
 
     function startConfetti() {
-        const confetti = document.createElement("div");
-        confetti.classList.add("confetti-container");
-        document.body.appendChild(confetti);
+        const confettiContainer = document.createElement("div");
+        confettiContainer.classList.add("confetti-container");
+        document.body.appendChild(confettiContainer);
 
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 200; i++) {  // LOTS of confetti! 🎉
             let piece = document.createElement("div");
             piece.classList.add("confetti");
-            confetti.appendChild(piece);
+            confettiContainer.appendChild(piece);
             piece.style.left = `${Math.random() * 100}vw`;
             piece.style.animationDelay = `${Math.random()}s`;
+            piece.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
         }
     }
 
