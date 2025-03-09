@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
             backgroundFlash("green");
             startConfetti();
 
-            if (streak % 5 === 0) startFireworks();
+            if (streak % 1 === 0) startFireworks();
 
             setTimeout(() => {
                 stopConfetti();
@@ -81,8 +81,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function levelUp() {
-        if (score >= 50 && level === 1) level = 2;
-        if (score >= 100 && level === 2) level = 3;
+        if (score >= 10 && level === 1) level = 2;
+        if (score >= 20 && level === 2) level = 3;
     }
 
     function backgroundFlash(color) {
