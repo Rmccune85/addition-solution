@@ -71,3 +71,7 @@ button {
 button:hover {
     background-color: darkblue;
 }
+#operator {
+    font-size: 40px;
+    font-weight: bold;
+}
