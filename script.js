@@ -32,8 +32,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Attach event listeners
     document.getElementById("submit").addEventListener("click", checkAnswer);
     document.getElementById("newQuestion").addEventListener("click", newQuestion);
+
+    // Enable Enter key to trigger submit
+    document.getElementById("answer").addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Prevent form submission (if inside a form)
+            checkAnswer(); // Call submit function
+        }
+    });
 
     newQuestion();
 });
