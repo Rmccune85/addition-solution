@@ -50,7 +50,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (parseFloat(userAnswer) === correctAnswer) {
             feedback.innerText = "Correct!";
             startFireworks(); // 🎆 Fireworks effect
-            setTimeout(newQuestion, 3000); // Auto-load next question after 3 seconds
+            setTimeout(() => {
+                stopFireworks();
+                newQuestion();
+            }, 3000); // Auto-load next question after 3 seconds
         } else {
             feedback.innerText = "Try again!";
         }
@@ -68,14 +71,30 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Fireworks animation
+    // Fireworks effect using JavaScript
     function startFireworks() {
-        const fireworks = document.createElement("div");
-        fireworks.classList.add("fireworks");
-        document.body.appendChild(fireworks);
+        const fireworksContainer = document.createElement("div");
+        fireworksContainer.classList.add("fireworks-container");
+        document.body.appendChild(fireworksContainer);
+
+        for (let i = 0; i < 10; i++) {
+            let firework = document.createElement("div");
+            firework.classList.add("firework");
+            fireworksContainer.appendChild(firework);
+
+            firework.style.left = `${Math.random() * 100}vw`;
+            firework.style.top = `${Math.random() * 100}vh`;
+            firework.style.animationDelay = `${Math.random() * 1.5}s`;
+        }
+
         setTimeout(() => {
-            fireworks.remove();
-        }, 2000);
+            stopFireworks();
+        }, 2000); // Remove fireworks after 2 seconds
+    }
+
+    function stopFireworks() {
+        let fireworks = document.querySelector(".fireworks-container");
+        if (fireworks) fireworks.remove();
     }
 
     newQuestion();
